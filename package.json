@@ -1,0 +1,31 @@
+{
+  "name": "cityofgits",
+  "version": "1.0.0",
+  "description": "The CityofGits - Open-source crafting",
+  "main": "./server.js",
+  "scripts": {
+    "start": "node start.js",
+    "dev": "node server.js",
+    "test": "echo \"No tests specified\" && exit 0"
+
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nekshadesilva/cityofgits.git"
+  },
+  "author": "OpenRockets Team",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nekshadesilva/cityofgits/issues"
+  },
+  "homepage": "https://github.com/nekshadesilva/cityofgits#readme",
+  "dependencies": {
+    "axios": "^1.10.0",
+    "dotenv": "^17.2.0",
+    "node-fetch": "^2.7.0",
+    "three": "^0.178.0"
+  },
+  "keywords": [
+    "ttyversion"
+  ]
+}

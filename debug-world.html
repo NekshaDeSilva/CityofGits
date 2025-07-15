@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CityofGits Debug - World Loading Test</title>
+    <style>
+        body { margin: 0; background: #000; color: #fff; font-family: Arial; }
+        #debug { position: absolute; top: 10px; left: 10px; z-index: 1000; background: rgba(0,0,0,0.8); padding: 10px; }
+        canvas { display: block; }
+    </style>
+</head>
+<body>
+    <div id="debug">
+        <h3>CityofGits World Loading Debug</h3>
+        <div id="status">Checking scripts...</div>
+        <div id="errors" style="color: red;"></div>
+    </div>
+    <canvas id="gameCanvas"></canvas>
+
+    <!-- Three.js from CDN -->
+    <script src="https://unpkg.com/three@0.154.0/build/three.min.js"></script>
+    
+    <script>
+        const debug = document.getElementById('debug');
+        const status = document.getElementById('status');
+        const errors = document.getElementById('errors');
+        
+        function log(message) {
+            console.log(message);
+            status.innerHTML = message;
+        }
+        
+        function logError(error) {
+            console.error(error);
+            errors.innerHTML += `<div>${error}</div>`;
+        }
+        
+        // Override console.error to catch JavaScript errors
+        const originalError = console.error;
+        console.error = function(...args) {
+            logError(args.join(' '));
+            originalError.apply(console, args);
+        };
+        
+        // Catch unhandled errors
+        window.addEventListener('error', (event) => {
+            logError(`Error: ${event.message} at ${event.filename}:${event.lineno}`);
+        });
+        
+        // Check if Three.js loaded
+        if (typeof THREE !== 'undefined') {
+            log('✅ Three.js loaded successfully');
+            
+            // Try to load the application scripts with error catching
+            async function loadAndTestScripts() {
+                try {
+                    log('🔄 Loading world_optimized.js...');
+                    await loadScript('./app/world_optimized.js');
+                    
+                    log('🔄 Loading app.js...');
+                    await loadScript('./app/app.js');
+                    
+                    log('🔄 Loading index.js...');
+                    await loadScript('./app/index.js');
+                    
+                    log('✅ All scripts loaded. Testing world creation...');
+                    
+                    // Test world creation
+                    setTimeout(() => {
+                        try {
+                            if (typeof World !== 'undefined') {
+                                log('✅ World class found. Testing instantiation...');
+                                const testWorld = new World();
+                                log('✅ World created successfully!');
+                                
+                                if (testWorld.initPromise) {
+                                    log('🔄 Waiting for world initialization...');
+                                    testWorld.initPromise.then(() => {
+                                        log('✅ World initialized successfully!');
+                                    }).catch(error => {
+                                        logError('❌ World initialization failed: ' + error.message);
+                                    });
+                                }
+                            } else {
+                                logError('❌ World class not found');
+                            }
+                        } catch (error) {
+                            logError('❌ World creation failed: ' + error.message);
+                        }
+                    }, 1000);
+                    
+                } catch (error) {
+                    logError('❌ Script loading failed: ' + error.message);
+                }
+            }
+            
+            loadAndTestScripts();
+            
+        } else {
+            logError('❌ Three.js failed to load');
+        }
+        
+        function loadScript(src) {
+            return new Promise((resolve, reject) => {
+                const script = document.createElement('script');
+                script.src = src;
+                script.onload = () => {
+                    log(`✅ Loaded: ${src}`);
+                    resolve();
+                };
+                script.onerror = () => {
+                    const error = `Failed to load: ${src}`;
+                    logError(`❌ ${error}`);
+                    reject(new Error(error));
+                };
+                document.head.appendChild(script);
+            });
+        }
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple CityofGits Test</title>
+    <style>
+        body { margin: 0; background: #000; color: #fff; font-family: Arial; }
+        #status { position: absolute; top: 10px; left: 10px; z-index: 1000; background: rgba(0,0,0,0.8); padding: 10px; }
+        canvas { display: block; }
+    </style>
+</head>
+<body>
+    <div id="status">Loading...</div>
+    <canvas id="gameCanvas"></canvas>
+
+    <!-- Three.js from CDN -->
+    <script src="https://unpkg.com/three@0.154.0/build/three.min.js"></script>
+    
+    <script>
+        const status = document.getElementById('status');
+        
+        function updateStatus(message) {
+            console.log(message);
+            status.innerHTML = message;
+        }
+        
+        // Test basic Three.js first
+        if (typeof THREE !== 'undefined') {
+            updateStatus('✅ Three.js loaded. Testing basic scene...');
+            
+            try {
+                // Create basic scene
+                const scene = new THREE.Scene();
+                const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+                const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('gameCanvas') });
+                renderer.setSize(window.innerWidth, window.innerHeight);
+                
+                // Create a colorful cube for testing
+                const geometry = new THREE.BoxGeometry();
+                const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
+                const cube = new THREE.Mesh(geometry, material);
+                scene.add(cube);
+                
+                camera.position.z = 5;
+                
+                function animate() {
+                    requestAnimationFrame(animate);
+                    cube.rotation.x += 0.01;
+                    cube.rotation.y += 0.01;
+                    renderer.render(scene, camera);
+                }
+                
+                animate();
+                updateStatus('✅ Basic Three.js working! Now testing CityofGits...');
+                
+                // Test loading world.json first
+                fetch('./world.json')
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        updateStatus(`✅ world.json loaded: ${Object.keys(data.houses || {}).length} houses found`);
+                        
+                        // Now try loading the scripts one by one
+                        loadCityofGitsScripts();
+                    })
+                    .catch(error => {
+                        updateStatus(`❌ world.json failed: ${error.message}`);
+                    });
+                
+            } catch (error) {
+                updateStatus(`❌ Three.js scene error: ${error.message}`);
+            }
+            
+        } else {
+            updateStatus('❌ Three.js failed to load');
+        }
+        
+        function loadCityofGitsScripts() {
+            updateStatus('🔄 Loading CityofGits scripts...');
+            
+            // Load scripts sequentially
+            loadScript('./app/world_optimized.js')
+                .then(() => loadScript('./app/app.js'))
+                .then(() => loadScript('./app/index.js'))
+                .then(() => {
+                    updateStatus('✅ All scripts loaded successfully!');
+                })
+                .catch(error => {
+                    updateStatus(`❌ Script loading failed: ${error.message}`);
+                });
+        }
+        
+        function loadScript(src) {
+            return new Promise((resolve, reject) => {
+                updateStatus(`🔄 Loading ${src}...`);
+                const script = document.createElement('script');
+                script.src = src;
+                script.onload = () => {
+                    updateStatus(`✅ Loaded ${src}`);
+                    resolve();
+                };
+                script.onerror = () => {
+                    const error = `Failed to load ${src}`;
+                    updateStatus(`❌ ${error}`);
+                    reject(new Error(error));
+                };
+                document.head.appendChild(script);
+            });
+        }
+        
+    </script>
+</body>
+</html>

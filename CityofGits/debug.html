@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CityofGits Debug</title>
+    <style>
+        body { margin: 0; background: #000; color: #fff; font-family: Arial; }
+        #debug { position: absolute; top: 10px; left: 10px; z-index: 1000; }
+        canvas { display: block; }
+    </style>
+</head>
+<body>
+    <div id="debug">
+        <h3>CityofGits Debug Console</h3>
+        <div id="status">Loading...</div>
+        <div id="errors"></div>
+    </div>
+    <canvas id="gameCanvas"></canvas>
+
+    <!-- Three.js from CDN -->
+    <script src="https://unpkg.com/three@0.154.0/build/three.min.js"></script>
+    
+    <script>
+        const debug = document.getElementById('debug');
+        const status = document.getElementById('status');
+        const errors = document.getElementById('errors');
+        
+        function log(message) {
+            console.log(message);
+            status.innerHTML = message;
+        }
+        
+        function logError(error) {
+            console.error(error);
+            errors.innerHTML += `<div style="color: red;">${error}</div>`;
+        }
+        
+        // Check if Three.js loaded
+        if (typeof THREE !== 'undefined') {
+            log('✅ Three.js loaded successfully');
+            
+            // Test basic Three.js functionality
+            try {
+                const scene = new THREE.Scene();
+                const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+                const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('gameCanvas') });
+                renderer.setSize(window.innerWidth, window.innerHeight);
+                
+                // Create a simple cube
+                const geometry = new THREE.BoxGeometry();
+                const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
+                const cube = new THREE.Mesh(geometry, material);
+                scene.add(cube);
+                
+                camera.position.z = 5;
+                
+                function animate() {
+                    requestAnimationFrame(animate);
+                    cube.rotation.x += 0.01;
+                    cube.rotation.y += 0.01;
+                    renderer.render(scene, camera);
+                }
+                
+                animate();
+                log('✅ Basic Three.js scene working');
+                
+            } catch (error) {
+                logError('❌ Three.js scene error: ' + error.message);
+            }
+            
+        } else {
+            logError('❌ Three.js failed to load');
+        }
+        
+        // Try to load the application scripts one by one
+        function loadScript(src) {
+            return new Promise((resolve, reject) => {
+                const script = document.createElement('script');
+                script.src = src;
+                script.onload = () => {
+                    log(`✅ Loaded: ${src}`);
+                    resolve();
+                };
+                script.onerror = () => {
+                    logError(`❌ Failed to load: ${src}`);
+                    reject(new Error(`Failed to load ${src}`));
+                };
+                document.head.appendChild(script);
+            });
+        }
+        
+        // Load scripts sequentially
+        async function loadAppScripts() {
+            try {
+                await loadScript('./app/world_optimized.js');
+                await loadScript('./app/app.js');
+                await loadScript('./app/index.js');
+                log('✅ All scripts loaded successfully');
+            } catch (error) {
+                logError('❌ Script loading failed: ' + error.message);
+            }
+        }
+        
+        // Start loading after a short delay
+        setTimeout(() => {
+            log('🔄 Loading application scripts...');
+            loadAppScripts();
+        }, 1000);
+        
+    </script>
+</body>
+</html>

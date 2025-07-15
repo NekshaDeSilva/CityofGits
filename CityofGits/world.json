@@ -1,0 +1,341 @@
+{
+  "world": {
+    "name": "CityofGits",
+    "version": "2.0.0",
+    "skyColor": "#87CEEB",
+    "groundColor": "#8B7355",
+    "worldSize": 120000
+  },
+  "houses": {
+    "house29128": {
+      "position": {
+        "x": 100,
+        "y": 0,
+        "z": 100
+      },
+      "floors": 2,
+      "floor1": {
+        "colour": "white",
+        "windows": 6,
+        "door-color": "#654321",
+        "window-color": "#87CEEB",
+        "style": "modern"
+      },
+      "floor2": {
+        "colour": "#E8E8E8",
+        "windows": 4,
+        "window-color": "#87CEEB",
+        "style": "modern"
+      },
+      "stairs": "yes",
+      "building-length": "320",
+      "building-width": "250",
+      "building-height": "180",
+      "roof-type": "pyramid",
+      "roof-color": "#8B4513",
+      "github": "NekshaDeSilva",
+      "developer": "NekshaDeSilva",
+      "buildingType": "residential-luxury"
+    },
+    "house29129": {
+      "position": {
+        "x": -400,
+        "y": 0,
+        "z": 300
+      },
+      "floors": 1,
+      "floor1": {
+        "colour": "#FF6B6B",
+        "windows": 8,
+        "door-color": "#2C3E50",
+        "window-color": "#3498DB",
+        "style": "industrial"
+      },
+      "stairs": "no",
+      "building-length": "280",
+      "building-width": "200",
+      "building-height": "220",
+      "roof-type": "flat",
+      "roof-color": "#555555",
+      "github": "openrockets",
+      "developer": "OpenRocketsTeam",
+      "buildingType": "residential-vibrant"
+    },
+    "house29130": {
+      "position": {
+        "x": 600,
+        "y": 0,
+        "z": -200
+      },
+      "floors": 3,
+      "floor1": {
+        "colour": "#4ECDC4",
+        "windows": 4,
+        "door-color": "#8E44AD",
+        "window-color": "#F39C12",
+        "style": "creative"
+      },
+      "floor2": {
+        "colour": "#2ECC71",
+        "windows": 4,
+        "window-color": "#E74C3C",
+        "style": "creative"
+      },
+      "floor3": {
+        "colour": "#E67E22",
+        "windows": 4,
+        "window-color": "#9B59B6",
+        "style": "creative"
+      },
+      "stairs": "yes",
+      "building-length": "400",
+      "building-width": "300",
+      "building-height": "250",
+      "roof-type": "gable",
+      "roof-color": "#E74C3C",
+      "github": "citybuilder3000",
+      "developer": "CityBuilder3000",
+      "buildingType": "art-gallery"
+    },
+    "house29131": {
+      "position": {
+        "x": -500,
+        "y": 0,
+        "z": -500
+      },
+      "floors": 2,
+      "floor1": {
+        "colour": "#9B59B6",
+        "windows": 6,
+        "door-color": "#E67E22",
+        "window-color": "#1ABC9C",
+        "style": "fantasy"
+      },
+      "floor2": {
+        "colour": "#8E44AD",
+        "windows": 4,
+        "window-color": "#F39C12",
+        "style": "fantasy"
+      },
+      "stairs": "yes",
+      "building-length": "350",
+      "building-width": "280",
+      "building-height": "200",
+      "roof-type": "pyramid",
+      "roof-color": "#2ECC71",
+      "github": "architectpro",
+      "developer": "ArchitectPro"
+    },
+    "house29132": {
+      "position": {
+        "x": 100,
+        "y": 0,
+        "z": -600
+      },
+      "floors": 1,
+      "floor1": {
+        "colour": "#F1C40F",
+        "windows": 4,
+        "door-color": "#C0392B",
+        "window-color": "#16A085",
+        "style": "minimalist"
+      },
+      "stairs": "no",
+      "building-length": "300",
+      "building-width": "240",
+      "building-height": "160",
+      "roof-type": "flat",
+      "roof-color": "#34495E",
+      "github": "minimaldesigns",
+      "developer": "MinimalDesigns"
+    },
+    "google_hq": {
+      "position": {
+        "x": -15000,
+        "y": 0,
+        "z": -15000
+      },
+      "floors": 50,
+      "floor1": {
+        "colour": "#4285F4",
+        "windows": 20,
+        "door-color": "#1A73E8",
+        "window-color": "#87CEEB",
+        "style": "corporate"
+      },
+      "stairs": "yes",
+      "building-length": "1500",
+      "building-width": "1500",
+      "building-height": "8000",
+      "roof-type": "flat",
+      "roof-color": "#3367D6",
+      "github": "google",
+      "developer": "Google Inc"
+    },
+    "microsoft_hq": {
+      "position": {
+        "x": 15000,
+        "y": 0,
+        "z": -15000
+      },
+      "floors": 50,
+      "floor1": {
+        "colour": "#00BCF2",
+        "windows": 20,
+        "door-color": "#0078D4",
+        "window-color": "#87CEEB",
+        "style": "corporate"
+      },
+      "stairs": "yes",
+      "building-length": "1500",
+      "building-width": "1500",
+      "building-height": "8000",
+      "roof-type": "flat",
+      "roof-color": "#0078D4",
+      "github": "microsoft",
+      "developer": "Microsoft Corp"
+    },
+    "meta_hq": {
+      "position": {
+        "x": -15000,
+        "y": 0,
+        "z": 15000
+      },
+      "floors": 50,
+      "floor1": {
+        "colour": "#1877F2",
+        "windows": 20,
+        "door-color": "#1565C0",
+        "window-color": "#87CEEB",
+        "style": "corporate"
+      },
+      "stairs": "yes",
+      "building-length": "1500",
+      "building-width": "1500",
+      "building-height": "8000",
+      "roof-type": "flat",
+      "roof-color": "#1565C0",
+      "github": "meta",
+      "developer": "Meta Platforms"
+    },
+    "amazon_hq": {
+      "position": {
+        "x": 15000,
+        "y": 0,
+        "z": 15000
+      },
+      "floors": 50,
+      "floor1": {
+        "colour": "#FF9900",
+        "windows": 20,
+        "door-color": "#FF8C00",
+        "window-color": "#87CEEB",
+        "style": "corporate"
+      },
+      "stairs": "yes",
+      "building-length": "1500",
+      "building-width": "1500",
+      "building-height": "8000",
+      "roof-type": "flat",
+      "roof-color": "#FF8C00",
+      "github": "amazon",
+      "developer": "Amazon Inc"
+    },
+    "specialBuilding1": {
+      "position": {
+        "x": 1200,
+        "y": 0,
+        "z": 800
+      },
+      "floors": 5,
+      "floor1": {
+        "colour": "#FFFFFF",
+        "windows": 12,
+        "door-color": "#FF0000",
+        "window-color": "#87CEEB",
+        "style": "medical"
+      },
+      "stairs": "yes",
+      "building-length": "500",
+      "building-width": "400",
+      "building-height": "250",
+      "roof-type": "flat",
+      "roof-color": "#FFFFFF",
+      "github": "cityhospital",
+      "developer": "City Medical Center",
+      "buildingType": "hospital"
+    },
+    "specialBuilding2": {
+      "position": {
+        "x": -1200,
+        "y": 0,
+        "z": -800
+      },
+      "floors": 3,
+      "floor1": {
+        "colour": "#FFF8DC",
+        "windows": 15,
+        "door-color": "#8B4513",
+        "window-color": "#FFE4B5",
+        "style": "educational"
+      },
+      "stairs": "yes",
+      "building-length": "450",
+      "building-width": "350",
+      "building-height": "180",
+      "roof-type": "gable",
+      "roof-color": "#8B4513",
+      "github": "cityschool",
+      "developer": "City Education Board",
+      "buildingType": "school"
+    },
+    "specialBuilding3": {
+      "position": {
+        "x": 800,
+        "y": 0,
+        "z": -600
+      },
+      "floors": 12,
+      "floor1": {
+        "colour": "#E0F6FF",
+        "windows": 25,
+        "door-color": "#1E90FF",
+        "window-color": "#87CEEB",
+        "style": "tech"
+      },
+      "stairs": "yes",
+      "building-length": "600",
+      "building-width": "500",
+      "building-height": "480",
+      "roof-type": "modern",
+      "roof-color": "#1E90FF",
+      "github": "techhq",
+      "developer": "Tech Innovations Inc",
+      "buildingType": "tech-modern"
+    },
+    "specialBuilding4": {
+      "position": {
+        "x": -800,
+        "y": 0,
+        "z": 600
+      },
+      "floors": 8,
+      "floor1": {
+        "colour": "#FFD700",
+        "windows": 20,
+        "door-color": "#B8860B",
+        "window-color": "#FFA500",
+        "style": "luxury"
+      },
+      "stairs": "yes",
+      "building-length": "400",
+      "building-width": "300",
+      "building-height": "320",
+      "roof-type": "pyramid",
+      "roof-color": "#DAA520",
+      "github": "luxuryhotel",
+      "developer": "Grand Hotel Group",
+      "buildingType": "hotel"
+    }
+  }
+}
