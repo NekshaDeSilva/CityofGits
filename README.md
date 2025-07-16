@@ -1,10 +1,21 @@
-# CityofGits
+ # CityofGits
 
 **Version 1.0**
 
 CityofGits is a fully open-source, extensible 3D world platform where you can build anything—from skyscrapers to rockets. Create your own city, play freely, and share your world with friends. This project is designed for developers, creators, and enthusiasts who want to explore, customize, and contribute to a collaborative virtual city. More updates and features are coming soon.
 
 ---
+#### Capture and share your unforgettable moments from CityofGits! Whether it's on Instagram, X, or YouTube, don’t forget to tag your adventures with **#cityofgits**. Let’s celebrate the experiences together! 
+
+#### Road to sun(2025) Demostration
+
+
+
+https://github.com/user-attachments/assets/d30d9a21-d885-4578-a16b-1a69b89422ba
+
+
+
+
 
 ## Overview
 
